@@ -16,6 +16,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
+import PanTree from '../PanTree/PanTree';
 
 import './App.css';
 
@@ -31,7 +32,7 @@ class App extends Component {
           <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-            <Redirect exact from="/" to="/home" />
+            <Redirect exact from="/" to="/about" />
             {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}
             <Route
@@ -54,6 +55,10 @@ class App extends Component {
               exact
               path="/info"
               component={InfoPage}
+            />
+            <ProtectedRoute
+              exact path = '/pantree'
+              component = {PanTree}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

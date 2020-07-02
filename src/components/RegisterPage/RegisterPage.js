@@ -74,6 +74,7 @@ class RegisterPage extends Component {
           </div>
         </form>
         <center>
+          <p>Already have an account?</p>
           <button
             type="button"
             className="link-button"

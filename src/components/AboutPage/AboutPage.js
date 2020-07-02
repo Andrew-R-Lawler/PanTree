@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
+class AboutPage extends Component {
 
-const AboutPage = () => (
-  <div>
-    <div>
-      <p>
-        This about page is for anyone to read!
-      </p>
-    </div>
-  </div>
-);
+  createAccount = () => {
+    this.props.history.push('/home');
+    this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' })
+  }
 
-export default AboutPage;
+  setToLogIn = () => {
+    this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' })
+  }
+
+  render(){
+    return(
+      <div>
+        <div>
+          <h1>PanTree</h1>
+          <h3>
+            A streamlined web app that helps you manage kitchen inventory, and find and create recipes seamlessly.
+          </h3>
+          {console.log(this.props)}
+          {this.props.reduxState.user.id ?
+          <sp></sp>
+          :
+          <div>
+          <button onClick={this.createAccount}>Create a FREE account</button>
+          <p>Already have an account?<Link to='/home' onClick={this.setToLogIn}>Log In!</Link></p>
+          </div>
+          }
+        </div>
+      </div>
+    )
+  }
+}
+
+const store = reduxState => ({ reduxState });
+export default connect(store)(AboutPage);
