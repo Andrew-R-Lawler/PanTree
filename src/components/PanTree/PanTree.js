@@ -24,6 +24,12 @@ class PanTree extends Component {
             type: 'ADD_PANTREE_ITEM',
             payload: this.state.newItem
         })
+        this.setState({
+            newItem: {
+                pantry_item: '',
+                quantity: ''
+            }
+        })
     }
 
     render(){

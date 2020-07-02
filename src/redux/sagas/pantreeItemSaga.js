@@ -1,12 +1,14 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* addItem (action) {
-    yield axios.post()
+    console.log(action.payload);
+    yield axios.post('/api/pantree', action.payload)
+    yield put ({ type: 'GET_PANTREE_ITEMS' })
 }
 
 function* pantreeItemSaga() {
-    yield takeLatest('ADD_PANTREE_ITEM', addItem);
+    yield takeEvery('ADD_PANTREE_ITEM', addItem);
 }
 
 export default pantreeItemSaga;
