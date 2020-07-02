@@ -6,8 +6,12 @@ class PanTree extends Component {
     state = {
         newItem: {
             pantry_item: '',
-            quantity: ''
+            quantity: '',
         }
+    }
+
+    componentDidMount() {
+        this.props.dispatch({ type: 'GET_PANTREE_ITEMS' })
     }
 
     handleChange = event => {
@@ -31,15 +35,45 @@ class PanTree extends Component {
             }
         })
     }
+    
+    editItem = (event) => {
+        console.log(event.target.value);
+        
+    }
+
+    deleteItem = (event) => {
+        console.log(event.target.value);
+        this.props.dispatch({ type: 'DELETE_PANTREE_ITEM', payload: {item_id: event.target.value}})
+    }
 
     render(){
         return(
             <div>
-                {console.log(this.state.newItem)}
                 <h2>My PanTree</h2>
                 <input name = 'pantry_item' value = {this.state.newItem.pantry_item} onChange = {this.handleChange} placeholder = 'Pantry Item' />
                 <input name = 'quantity' value = {this.state.newItem.quantity} onChange = {this.handleChange} placeholder = 'Quantity' />
                 <button onClick = {this.handleSubmit}>Add Item</button>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {this.props.reduxState.pantreeInventory.map((item) => {
+                        return (<tr>
+                            <td>{item.item_name}</td>
+                            <td>{item.quantity}</td>
+                            <td>
+                                <button value = {item.id} onClick = {this.editItem}>Edit</button>
+                                <button value = {item.id} onClick = {this.deleteItem}>Delete</button>
+                            </td>
+                        </tr>)
+                    })}
+                    </tbody>
+                </table>
             </div>
         )
     }

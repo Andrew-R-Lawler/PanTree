@@ -11,12 +11,28 @@ function* addItem (action) {
     }
 }
 
-function* getItem (){
+function* getItems (){
+    try {
+        const pantreeItemResponse = yield axios.get('/api/pantree')
+        yield put({ type: 'SET_PANTREE_ITEMS', payload: pantreeItemResponse })
+    } catch (error) {
+        console.log('FAILED GET:', error);
+    }
+}
 
+function* deleteItem(action){
+    try{
+        yield axios.delete(`/api/pantree/${action.payload.item_id}`)
+        yield put({ type: 'GET_PANTREE_ITEMS' })
+    } catch (error) {
+        console.log('FAILED DELETE:', error);
+    }
 }
 
 function* pantreeItemSaga() {
     yield takeEvery('ADD_PANTREE_ITEM', addItem);
+    yield takeEvery('GET_PANTREE_ITEMS', getItems);
+    yield takeEvery('DELETE_PANTREE_ITEM', deleteItem)
 }
 
 export default pantreeItemSaga;

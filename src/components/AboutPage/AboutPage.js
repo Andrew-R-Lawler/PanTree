@@ -21,7 +21,6 @@ class AboutPage extends Component {
           <h3>
             A streamlined web app that helps you manage kitchen inventory, and find and create recipes seamlessly.
           </h3>
-          {console.log(this.props)}
           {this.props.reduxState.user.id ?
           <sp></sp>
           :
