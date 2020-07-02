@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PanTreeItem from '../PanTreeItem/PanTreeItem';
 
 class PanTree extends Component {
     
@@ -37,8 +38,7 @@ class PanTree extends Component {
     }
     
     editItem = (event) => {
-        console.log(event.target.value);
-        
+        console.log(event.target.value); 
     }
 
     deleteItem = (event) => {
@@ -63,14 +63,9 @@ class PanTree extends Component {
                     </thead>
                     <tbody>
                     {this.props.reduxState.pantreeInventory.map((item) => {
-                        return (<tr>
-                            <td>{item.item_name}</td>
-                            <td>{item.quantity}</td>
-                            <td>
-                                <button value = {item.id} onClick = {this.editItem}>Edit</button>
-                                <button value = {item.id} onClick = {this.deleteItem}>Delete</button>
-                            </td>
-                        </tr>)
+                        return (
+                        <PanTreeItem item = {item} />
+                        )
                     })}
                     </tbody>
                 </table>
