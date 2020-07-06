@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import SearchResult from '../SearchResult/SearchResult';
 
 class Recipes extends Component {
 
@@ -24,7 +25,6 @@ class Recipes extends Component {
         return(
             <div>
                 <h2>Recipe Search</h2>
-                {console.log(this.state)}
                 <input onChange = {this.handleChange} name = 'search_query' placeholder = 'Search for Recipes!' value = {this.state.search_query} />
                 <button onClick = {this.searchRecipe}>Search</button>
                 <h2>Search Results</h2>
