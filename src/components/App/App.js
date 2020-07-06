@@ -17,6 +17,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import PanTree from '../PanTree/PanTree';
+import Recipes from '../Recipes/Recipes';
 
 import './App.css';
 
@@ -60,6 +61,7 @@ class App extends Component {
               exact path = '/pantree'
               component = {PanTree}
             />
+            <Route path = '/recipe' component = {Recipes} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

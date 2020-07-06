@@ -6,8 +6,9 @@ class PanTreeItem extends Component {
     state = {
         editToggle: false,
         itemUpdate: {
-            item_name: '',
-            quantity: '',
+            item_id: this.props.item.id,
+            item_name: this.props.item.item_name,
+            quantity: this.props.item.quantity,
         }
     }
 
@@ -27,6 +28,16 @@ class PanTreeItem extends Component {
         this.setState({
             editToggle: false
         })
+        this.props.dispatch({ type: 'UPDATE_PANTREE_ITEM', payload: this.state.itemUpdate })
+    }
+
+    handleChange = event => {
+        this.setState({
+            itemUpdate: {
+                ...this.state.itemUpdate,
+                [event.target.name]: event.target.value
+            }
+        })
     }
 
     render(){
@@ -34,12 +45,12 @@ class PanTreeItem extends Component {
             <tr>
                 {console.log(this.state)}
                 {this.state.editToggle === true ?
-                    <td><input placeholder={this.props.item.item_name}></input></td>
+                    <td><input name = 'item_name' value = {this.state.itemUpdate.item_name} placeholder={this.props.item.item_name} onChange = {this.handleChange}></input></td>
                 :
                     <td>{this.props.item.item_name}</td>
                 }
                 {this.state.editToggle === true ?
-                    <td><input placeholder={this.props.item.quantity}></input></td>
+                    <td><input name = 'quantity' value = {this.state.itemUpdate.quantity} placeholder={this.props.item.quantity} onChange = {this.handleChange}></input></td>
                 :
                     <td>{this.props.item.quantity}</td>
                 }

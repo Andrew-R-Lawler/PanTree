@@ -29,10 +29,20 @@ function* deleteItem(action){
     }
 }
 
+function* updateItem(action){
+    try{
+        yield axios.put(`/api/pantree/${action.payload.item_id}`, action.payload)
+        yield put({ type: 'GET_PANTREE_ITEMS' })
+    } catch (error) {
+        console.log('FAILED PUT:', error);
+    }
+}
+
 function* pantreeItemSaga() {
     yield takeEvery('ADD_PANTREE_ITEM', addItem);
     yield takeEvery('GET_PANTREE_ITEMS', getItems);
     yield takeEvery('DELETE_PANTREE_ITEM', deleteItem)
+    yield takeEvery('UPDATE_PANTREE_ITEM', updateItem)
 }
 
 export default pantreeItemSaga;

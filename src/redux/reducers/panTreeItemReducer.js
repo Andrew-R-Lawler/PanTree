@@ -4,6 +4,8 @@ const panTreeItemReducer = ( state = {}, action ) => {
             return action.payload;
         case 'DELETE_PANTREE_ITEM':
             return action.payload;
+        case 'UPDATE_PANTREE_ITEM':
+            return action.payload;
         default:
             return state;
     }
