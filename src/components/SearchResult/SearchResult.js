@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class SearchResult extends Component {
+
+    addToFavorites = () => {
+        console.log('in addToFavorites', this.props.item);
+        this.props.dispatch({ type: 'POST_TO_FAVORITES', payload: this.props.item.recipe.uri })
+    }
+
+    addIngredientsToShoppingList = () => {
+        console.log('adding ingredients to shopping list', this.props.item.recipe.ingredients);
+        
+    }
+
     render(){
         return(
             <div>
@@ -14,6 +25,8 @@ class SearchResult extends Component {
                 </ul>
                 <p>Source: {this.props.item.recipe.source}</p>
                 <p>Link to recipe's source page: <a href = {this.props.item.recipe.url}>{this.props.item.recipe.url}</a></p>
+                <button onClick={this.addToFavorites}>Add Recipe to Favorites</button>
+                <button onClick={this.addIngredientsToShoppingList}>Add ingredients to Shopping List</button>
             </div>
         )
     }
