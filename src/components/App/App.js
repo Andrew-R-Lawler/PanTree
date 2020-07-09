@@ -28,18 +28,21 @@ class App extends Component {
     this.props.dispatch({type: 'FETCH_USER'})
   }
 
+  goToHome = () => {
+    this.props.history.push('/home');
+  }
+
   render() {
     return (
       <Router>
         <div>
-          <Nav />
+          <Nav goToHome = {this.goToHome}/>
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/about" />
             {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}
             <Route
-              exact
               path="/about"
               component={AboutPage}
             />
@@ -63,9 +66,9 @@ class App extends Component {
               exact path = '/pantree'
               component = {PanTree}
             />
-            <Route path = '/recipe' component = {Recipes} />
-            <Route path = '/favorites' component = {Favorites} />
-            <Route path = '/shopping' component = {ShoppingList} />
+            <ProtectedRoute exact path = '/recipe' component = {Recipes} />
+            <ProtectedRoute exact path = '/favorites' component = {Favorites} />
+            <ProtectedRoute exact path = '/shopping' component = {ShoppingList} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

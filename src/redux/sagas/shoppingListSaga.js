@@ -4,7 +4,7 @@ import axios from 'axios';
 function* postIngredient (action) {
     try{
         yield axios.post('/api/shopping', action.payload)
-        yield put ({ type: 'SET_SHOPPING_LIST' })
+        yield put ({ type: 'GET_SHOPPING_LIST' })
     } catch (error) {
         console.log('ERROR FAILED TO POST', error);
     }

@@ -42,7 +42,6 @@ class ShoppingListItem extends Component {
     render(){
         return(
             <tr>
-                {console.log(this.state.itemUpdate)}
                 {this.state.editToggle === true ?
                     <td><input name='list_item' value={this.state.itemUpdate.list_item} placeholder={this.props.item.list_item} onChange={this.handleChange}></input></td>
                     :

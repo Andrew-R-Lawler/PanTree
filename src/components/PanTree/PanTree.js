@@ -64,7 +64,7 @@ class PanTree extends Component {
                     <tbody>
                     {this.props.reduxState.pantreeInventory.map((item) => {
                         return (
-                        <PanTreeItem item = {item} />
+                        <PanTreeItem key = {item.id} item = {item} />
                         )
                     })}
                     </tbody>

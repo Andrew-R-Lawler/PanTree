@@ -11,7 +11,7 @@ class SearchResult extends Component {
     addIngredientsToShoppingList = () => {
         console.log('adding ingredients to shopping list', this.props.item.recipe.ingredientLines);
         this.props.item.recipe.ingredients.map(ingredient => {
-            this.props.dispatch({ type: 'POST_TO_SHOPPING_LIST', payload: ingredient })
+            return (this.props.dispatch({ type: 'POST_TO_SHOPPING_LIST', payload: ingredient }))
         })
     }
 
@@ -22,7 +22,7 @@ class SearchResult extends Component {
                 <img src = {this.props.item.recipe.image} alt = {this.props.item.recipe.label}/>
                 <ul>
                 {this.props.item.recipe.ingredients.map((ingredient) => {
-                    return(<li>{ingredient.text}</li>)
+                    return(<li key = {ingredient.id}>{ingredient.text}</li>)
                 })}
                 </ul>
                 <p>Source: {this.props.item.recipe.source}</p>

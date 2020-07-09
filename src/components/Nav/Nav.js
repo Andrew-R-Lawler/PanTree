@@ -17,37 +17,37 @@ const Nav = (props) => (
         {props.user.id ? 'Home' : 'Login / Register'}
       </Link>
       { props.user.id ?
-      <Link className="nav-link" to="/recipe">
-        Recipes
-      </Link>
-      :
-      <sp></sp>
+        <Link className="nav-link" to="/recipe">
+          Recipes
+        </Link>
+        :
+        <span></span>
       }
       {props.user.id ?
         <Link className="nav-link" to="/favorites">
           Favorites
         </Link>
         :
-        <sp></sp>
+        <span></span>
       }
       {props.user.id ?
         <Link className="nav-link" to="/pantree">
           PanTree
         </Link>
         :
-        <sp></sp>
+        <span></span>
       }
       {props.user.id ?
         <Link className="nav-link" to="/shopping">
           Shopping List
         </Link>
         :
-        <sp></sp>
+        <span></span>
       }
       {/* Show the link to the info page and the logout button if the user is logged in */}
       {props.user.id && (
         <>
-          <LogOutButton className="nav-link"/>
+          <LogOutButton className="nav-link" goToHome = {props.goToHome}/>
         </>
       )}
       {/* Always show this link since the about page is not protected */}

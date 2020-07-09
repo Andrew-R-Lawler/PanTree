@@ -31,7 +31,7 @@ class Recipes extends Component {
                 </form>
                 <h2>Search Results</h2>
                 {this.props.reduxState.results.map((item) => {
-                    return (<SearchResult item = {item} />)
+                    return (<SearchResult key = {item.id} item = {item} />)
                 })}
             </div>
         )
