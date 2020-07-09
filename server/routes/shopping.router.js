@@ -24,4 +24,27 @@ router.get('/', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+    pool.query(`DELETE FROM "shopping_list"
+    WHERE "id" = $1`, [req.params.id])
+    .then(result => {
+        res.sendStatus(200);
+    }).catch(error => {
+        console.log('error', error);
+        res.sendStatus(500);
+    })
+})
+
+router.put('/', (req, res) => {
+    pool.query(`UPDATE "shopping_list"
+    SET "list_item" = $1
+    WHERE "id" = $2`, [req.body.list_item, req.body.id])
+    .then(result => {
+        res.sendStatus(200);
+    }).catch(error => {
+        console.log('error PUT /api/shopping', error);
+        res.sendStatus(500);
+    })
+})
+
 module.exports = router;

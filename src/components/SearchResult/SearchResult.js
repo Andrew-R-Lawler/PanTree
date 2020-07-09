@@ -9,7 +9,7 @@ class SearchResult extends Component {
     }
 
     addIngredientsToShoppingList = () => {
-        console.log('adding ingredients to shopping list', this.props.item.recipe.ingredients);
+        console.log('adding ingredients to shopping list', this.props.item.recipe.ingredientLines);
         this.props.item.recipe.ingredients.map(ingredient => {
             this.props.dispatch({ type: 'POST_TO_SHOPPING_LIST', payload: ingredient })
         })
