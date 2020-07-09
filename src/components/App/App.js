@@ -15,7 +15,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import PanTree from '../PanTree/PanTree';
 import Recipes from '../Recipes/Recipes';
 import Favorites from '../Favorites/Favorites';
@@ -57,11 +56,6 @@ class App extends Component {
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
-            <ProtectedRoute
-              exact
-              path="/info"
-              component={InfoPage}
-            />
             <ProtectedRoute
               exact path = '/pantree'
               component = {PanTree}
