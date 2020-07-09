@@ -25,8 +25,10 @@ class Recipes extends Component {
         return(
             <div>
                 <h2>Recipe Search</h2>
+                <form onSubmit = {this.searchRecipe}>
                 <input onChange = {this.handleChange} name = 'search_query' placeholder = 'Search for Recipes!' value = {this.state.search_query} />
-                <button onClick = {this.searchRecipe}>Search</button>
+                <button onClick = {this.searchRecipe} type = 'submit'>Search</button>
+                </form>
                 <h2>Search Results</h2>
                 {this.props.reduxState.results.map((item) => {
                     return (<SearchResult item = {item} />)

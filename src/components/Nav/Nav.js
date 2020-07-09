@@ -24,8 +24,22 @@ const Nav = (props) => (
       <sp></sp>
       }
       {props.user.id ?
+        <Link className="nav-link" to="/favorites">
+          Favorites
+        </Link>
+        :
+        <sp></sp>
+      }
+      {props.user.id ?
         <Link className="nav-link" to="/pantree">
           PanTree
+        </Link>
+        :
+        <sp></sp>
+      }
+      {props.user.id ?
+        <Link className="nav-link" to="/shopping">
+          Shopping List
         </Link>
         :
         <sp></sp>

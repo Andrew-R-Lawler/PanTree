@@ -7,6 +7,8 @@ import pantreeInventory from './panTreeInventoryReducer';
 import search from './searchReducer';
 import results from './resultsReducer';
 import favorites from './favoritesReducer';
+import getFavorites from './getFavoritesReducer';
+import shoppingList from './shoppingListReducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -22,6 +24,8 @@ const rootReducer = combineReducers({
   search, // contains current search query
   results, // contains results from the search query
   favorites, // contains favorite recipe to post
+  getFavorites, // collects user favorites data
+  shoppingList, // contains list of items to purchase
 });
 
 export default rootReducer;

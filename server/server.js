@@ -13,6 +13,7 @@ const userRouter = require('./routes/user.router');
 const pantreeRouter = require('./routes/pantree.router');
 const searchRouter = require('./routes/search.router');
 const favoritesRouter = require('./routes/favorites.router');
+const shoppingRouter = require('./routes/shopping.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -30,6 +31,7 @@ app.use('/api/user', userRouter);
 app.use('/api/pantree', pantreeRouter);
 app.use('/api/search', searchRouter);
 app.use('/api/favorite', favoritesRouter);
+app.use('/api/shopping', shoppingRouter)
 
 // Serve static files
 app.use(express.static('build'));

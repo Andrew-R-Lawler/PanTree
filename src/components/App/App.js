@@ -18,6 +18,8 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import PanTree from '../PanTree/PanTree';
 import Recipes from '../Recipes/Recipes';
+import Favorites from '../Favorites/Favorites';
+import ShoppingList from '../ShoppingList/ShoppingList';
 
 import './App.css';
 
@@ -62,6 +64,8 @@ class App extends Component {
               component = {PanTree}
             />
             <Route path = '/recipe' component = {Recipes} />
+            <Route path = '/favorites' component = {Favorites} />
+            <Route path = '/shopping' component = {ShoppingList} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
