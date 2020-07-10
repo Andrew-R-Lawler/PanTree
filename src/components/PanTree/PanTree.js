@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PanTreeItem from '../PanTreeItem/PanTreeItem';
+import { Table, Input, Button, Form, Container, Divider } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
 
 class PanTree extends Component {
     
@@ -36,39 +38,37 @@ class PanTree extends Component {
             }
         })
     }
-    
-    editItem = (event) => {
-        console.log(event.target.value); 
-    }
-
-    deleteItem = (event) => {
-        console.log(event.target.value);
-        this.props.dispatch({ type: 'DELETE_PANTREE_ITEM', payload: {item_id: event.target.value}})
-    }
 
     render(){
         return(
             <div>
-                <h2>My PanTree</h2>
-                <input name = 'pantry_item' value = {this.state.newItem.pantry_item} onChange = {this.handleChange} placeholder = 'Pantry Item' />
-                <input name = 'quantity' value = {this.state.newItem.quantity} onChange = {this.handleChange} placeholder = 'Quantity' />
-                <button onClick = {this.handleSubmit}>Add Item</button>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Quantity</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {this.props.reduxState.pantreeInventory.map((item) => {
-                        return (
-                        <PanTreeItem key = {item.id} item = {item} />
-                        )
-                    })}
-                    </tbody>
-                </table>
+                <Container textAlign='left'>
+                    <h1 class='header'>My PanTree</h1>
+                </Container>
+                <Divider />
+                <Form class='add'>
+                    <Input fluid name = 'pantry_item' value = {this.state.newItem.pantry_item} onChange = {this.handleChange} placeholder = 'Pantry Item' />
+                    <Input fluid name = 'quantity' value = {this.state.newItem.quantity} onChange = {this.handleChange} placeholder = 'Quantity' />
+                    <Button onClick = {this.handleSubmit}>Add Item</Button>
+                </Form>
+                <Container>
+                    <Table>
+                        <Table.Header>
+                            <Table.Row>
+                                <Table.HeaderCell>Item Name</Table.HeaderCell>
+                                <Table.HeaderCell>Quantity</Table.HeaderCell>
+                                <Table.HeaderCell>Actions</Table.HeaderCell>
+                            </Table.Row>
+                        </Table.Header>
+                        <Table.Body>
+                        {this.props.reduxState.pantreeInventory.map((item) => {
+                            return (
+                            <PanTreeItem key = {item.id} item = {item} />
+                            )
+                        })}
+                        </Table.Body>
+                    </Table>
+                </Container>
             </div>
         )
     }
