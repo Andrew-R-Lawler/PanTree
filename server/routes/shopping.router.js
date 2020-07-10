@@ -15,7 +15,8 @@ router.post('/', (req, res) => {
 
 router.get('/', (req, res) => {
     pool.query(`SELECT * FROM "shopping_list"
-    WHERE "user_id" = $1`, [req.user.id])
+    WHERE "user_id" = $1
+    ORDER BY "id" ASC`, [req.user.id])
     .then(result => {
         res.send(result.rows);
     }).catch(error => {

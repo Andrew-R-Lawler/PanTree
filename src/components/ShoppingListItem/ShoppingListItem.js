@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Input, Button, Table } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
 
 class ShoppingListItem extends Component {
 
@@ -41,21 +43,21 @@ class ShoppingListItem extends Component {
 
     render(){
         return(
-            <tr>
+            <Table.Row>
                 {this.state.editToggle === true ?
-                    <td><input name='list_item' value={this.state.itemUpdate.list_item} placeholder={this.props.item.list_item} onChange={this.handleChange}></input></td>
+                    <Table.Cell><Input fluid name='list_item' value={this.state.itemUpdate.list_item} placeholder={this.props.item.list_item} onChange={this.handleChange}></Input></Table.Cell>
                     :
-                    <td>{this.props.item.list_item}</td>
+                    <Table.Cell>{this.props.item.list_item}</Table.Cell>
                 }
                 {this.state.editToggle === true ?
-                    <td><button onClick={this.editSubmit}>Submit Changes</button></td>
+                    <Table.Cell textAlign='right'><Button onClick={this.editSubmit}>Submit Changes</Button></Table.Cell>
                     :
-                    <td>
-                        <button value={this.props.item.id} onClick={this.editItem}>Edit</button>
-                        <button value={this.props.item.id} onClick={this.deleteItem}>Delete</button>
-                    </td>
+                    <Table.Cell textAlign='right'>
+                        <Button primary value={this.props.item.id} onClick={this.editItem}>Edit</Button>
+                        <Button secondary value={this.props.item.id} onClick={this.deleteItem}>Delete</Button>
+                    </Table.Cell>
                 }
-            </tr>
+            </Table.Row>
         )
     }
 }

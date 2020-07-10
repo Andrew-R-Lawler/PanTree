@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SearchResult from '../SearchResult/SearchResult';
+import { Container, Divider, Grid, Form, Button, Input, } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
+import './Recipes.css'
 
 class Recipes extends Component {
 
@@ -24,15 +27,25 @@ class Recipes extends Component {
     render(){
         return(
             <div>
-                <h2>Recipe Search</h2>
-                <form onSubmit = {this.searchRecipe}>
-                <input onChange = {this.handleChange} name = 'search_query' placeholder = 'Search for Recipes!' value = {this.state.search_query} />
-                <button onClick = {this.searchRecipe}>Search</button>
-                </form>
+                <Container textAlign='left'>
+                <h1 class='header'>Recipe Search</h1>
+                </Container>
+                <Divider />
+                <Form>
+                <Input icon='search' onChange = {this.handleChange} name = 'search_query' placeholder = 'Search for Recipes!' value = {this.state.search_query} />
+                <Button onClick = {this.searchRecipe}>Search</Button>
+                </Form>
+                <Container textAlign='left'>
                 <h2>Search Results</h2>
-                {this.props.reduxState.results.map((item) => {
-                    return (<SearchResult key = {item.id} item = {item} />)
-                })}
+                </Container>
+                <Divider />
+                <Container>
+                    <Grid relaxed columns={3}>
+                        {this.props.reduxState.results.map((item) => {
+                            return (<div class='result'><SearchResult key={item.id} item={item} /></div>)
+                        })}
+                    </Grid>
+                </Container>
             </div>
         )
     }

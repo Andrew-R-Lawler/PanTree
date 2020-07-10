@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Card, Image, Modal, Header, List, Icon } from 'semantic-ui-react';
+import { Button, Card, Image, Modal, Header, List } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
 class SearchResult extends Component {
 
     addToFavorites = () => {
-        console.log('in addToFavorites', this.props.item);
         this.props.dispatch({ type: 'POST_TO_FAVORITES', payload: this.props.item.recipe.uri })
     }
 
@@ -39,21 +38,18 @@ class SearchResult extends Component {
                                             return(<List.Item>{ingredient}</List.Item>)
                                         })}
                                     </List>
-                                    <Modal trigger={<Button>Add to Favorites</Button>} basic size = 'small'>
-                                        <Header content='Add To Favorites' />
-                                        <Modal.Content>
-                                            <p>Would you like to add this recipe to your favorites?</p>
-                                        </Modal.Content>
-                                        <Modal.Actions>
-                                            <Button closeDocumentOnClick={true} basic color='red' inverted>
-                                                <Icon name='remove'/> No
-                                            </Button>
-                                            <Button closeDocumentOnClick={true} onClick={this.addToFavorites} color='green' inverted>
-                                                <Icon name='checkmark' /> Yes
-                                            </Button>
-                                        </Modal.Actions>
-                                    </Modal>
-                                    <Button secondary onClick={this.addIngredientsToShoppingList}>Add Ingredients to Shopping List</Button>
+                                    <Modal
+                                        trigger={<Button primary onClick={this.addToFavorites}>Add to Favorites</Button>}
+                                        header='Add To Favorites!'
+                                        content='Recipe has been added to your favorites, Check out the favorites tab to easily access it in the future!'
+                                        actions={[{ key: 'done', content: 'Done', positive: true }]}
+                                    />
+                                    <Modal
+                                        trigger={<Button secondary onClick={this.addIngredientsToShoppingList}>Add Ingredients to Shopping List</Button>}
+                                        header='Add To Shopping List!'
+                                        content="This recipe's ingredients have been added to your Shopping List!"
+                                        actions={[{ key: 'done', content: 'Done', positive: true }]}
+                                    />
                                 </Modal.Description>
                             </Modal.Content>
                         </Modal>

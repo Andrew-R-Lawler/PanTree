@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ShoppingListItem from '../ShoppingListItem/ShoppingListItem';
+import { Table, Input, Button, Form, Container, Divider } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
+import './ShoppingList.css';
 
 class ShoppingList extends Component {
 
@@ -28,25 +31,29 @@ class ShoppingList extends Component {
     render(){
         return(
             <div>
-                {console.log(this.state)}
-                <h2>Shopping List</h2>
-                <form onSubmit={this.postItem}>
-                    <input onChange={this.handleChange} name='text' placeholder='Shopping List Item' value={this.state.text} />
-                    <button type='submit'>Add to Shopping List</button>
-                </form>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Ingredients to Purchase</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.props.reduxState.shoppingList.map(item => {
-                            return(<ShoppingListItem item = {item} />)
-                        })}
-                    </tbody>
-                </table>
+                <Container textAlign='left'>
+                <h1 class='header'>Shopping List</h1>
+                </Container>
+                <Divider />
+                <Form class='add' onSubmit={this.postItem}>
+                    <Input onChange={this.handleChange} name='text' placeholder='Shopping List Item' value={this.state.text} />
+                    <Button type='submit'>Add to Shopping List</Button>
+                </Form>
+                <Container>
+                    <Table>
+                        <Table.Header>
+                            <Table.Row>
+                                <Table.HeaderCell>Ingredients to Purchase</Table.HeaderCell>
+                                <Table.HeaderCell textAlign='right'>Actions</Table.HeaderCell>
+                            </Table.Row>
+                        </Table.Header>
+                        <Table.Body>
+                            {this.props.reduxState.shoppingList.map(item => {
+                                return(<ShoppingListItem item = {item} />)
+                            })}
+                        </Table.Body>
+                    </Table>
+                </Container>
             </div>
         )
     }
