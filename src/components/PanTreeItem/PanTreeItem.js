@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Table, Input, Button } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
+import './PanTreeItem.css';
 
 class PanTreeItem extends Component {
 
@@ -42,27 +45,27 @@ class PanTreeItem extends Component {
 
     render(){
         return(
-            <tr>
+            <Table.Row>
                 {console.log(this.state)}
                 {this.state.editToggle === true ?
-                    <td><input name = 'item_name' value = {this.state.itemUpdate.item_name} placeholder={this.props.item.item_name} onChange = {this.handleChange}></input></td>
+                    <Table.Cell><Input fluid name = 'item_name' value = {this.state.itemUpdate.item_name} placeholder={this.props.item.item_name} onChange = {this.handleChange} /></Table.Cell>
                 :
-                    <td>{this.props.item.item_name}</td>
+                    <Table.Cell>{this.props.item.item_name}</Table.Cell>
                 }
                 {this.state.editToggle === true ?
-                    <td><input name = 'quantity' value = {this.state.itemUpdate.quantity} placeholder={this.props.item.quantity} onChange = {this.handleChange}></input></td>
+                    <Table.Cell><Input fluid name='quantity' value={this.state.itemUpdate.quantity} placeholder={this.props.item.quantity} onChange={this.handleChange} /></Table.Cell>
                 :
-                    <td>{this.props.item.quantity}</td>
+                    <Table.Cell>{this.props.item.quantity}</Table.Cell>
                 }
                 {this.state.editToggle === true ?
-                    <td><button onClick={this.editSubmit}>Submit Changes</button></td>
+                    <Table.Cell className='smaller-width'><Button onClick={this.editSubmit}>Submit Changes</Button></Table.Cell>
                 :
-                    <td>
-                        <button value={this.props.item.item_id} onClick={this.editItem}>Edit</button>
-                        <button value={this.props.item.id} onClick={this.deleteItem}>Delete</button>
-                    </td>
+                    <Table.Cell className='smaller-width'>
+                        <Button primary value={this.props.item.item_id} onClick={this.editItem}>Edit</Button>
+                        <Button secondary value={this.props.item.id} onClick={this.deleteItem}>Delete</Button>
+                    </Table.Cell>
                 }
-            </tr>
+            </Table.Row>
         )
     }
 }
