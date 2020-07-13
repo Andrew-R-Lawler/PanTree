@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     pool.query(`INSERT INTO "shopping_list" ("user_id", "list_item")
     VALUES ($1, $2)`, [req.user.id, req.body.text])
         .then((result) => {
@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
         })
 })
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     pool.query(`SELECT * FROM "shopping_list"
     WHERE "user_id" = $1
     ORDER BY "id" ASC`, [req.user.id])
@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     pool.query(`DELETE FROM "shopping_list"
     WHERE "id" = $1`, [req.params.id])
     .then(result => {
@@ -36,7 +36,7 @@ router.delete('/:id', (req, res) => {
     })
 })
 
-router.put('/', (req, res) => {
+router.put('/', rejectUnauthenticated, (req, res) => {
     pool.query(`UPDATE "shopping_list"
     SET "list_item" = $1
     WHERE "id" = $2`, [req.body.list_item, req.body.id])

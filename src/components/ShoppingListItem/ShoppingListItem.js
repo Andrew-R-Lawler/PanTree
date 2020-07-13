@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input, Button, Table } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
+import './ShoppingListItem.css';
 
 class ShoppingListItem extends Component {
 
@@ -50,9 +51,9 @@ class ShoppingListItem extends Component {
                     <Table.Cell>{this.props.item.list_item}</Table.Cell>
                 }
                 {this.state.editToggle === true ?
-                    <Table.Cell textAlign='right'><Button onClick={this.editSubmit}>Submit Changes</Button></Table.Cell>
+                    <Table.Cell className='smaller-width'><Button onClick={this.editSubmit}>Submit Changes</Button></Table.Cell>
                     :
-                    <Table.Cell textAlign='right'>
+                    <Table.Cell className='smaller-width'>
                         <Button primary value={this.props.item.id} onClick={this.editItem}>Edit</Button>
                         <Button secondary value={this.props.item.id} onClick={this.deleteItem}>Delete</Button>
                     </Table.Cell>

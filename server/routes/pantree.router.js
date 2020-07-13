@@ -2,7 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     pool.query(`SELECT * FROM "pantry_items"
     WHERE "user_id" = $1
     ORDER BY "id" ASC`, [req.user.id])
@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     })
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log(req.body);
     pool.query(`INSERT INTO "pantry_items" ("user_id", "item_name", "quantity")
     VALUES ($1, $2, $3)`, [req.user.id, req.body.pantry_item, req.body.quantity])
@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
     })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     console.log(req.params);
     
     pool.query(`DELETE FROM "pantry_items"
@@ -39,7 +39,7 @@ router.delete('/:id', (req, res) => {
     })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
     pool.query(`UPDATE "pantry_items"
     SET "item_name" = $1, "quantity" = $2
     WHERE "id" = $3`, [req.body.item_name, req.body.quantity, req.params.id])

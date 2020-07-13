@@ -2,12 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import image from '../Images/tree-golden.jpg';
+import { Image } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
 import './Nav.css';
 
 const Nav = (props) => (
   <div className="nav">
     <Link to="/home">
-      <h2 className="nav-title">PanTree</h2>
+      <h1 className="nav-title"><Image src={image} size='tiny' />PanTree</h1>
     </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">
@@ -47,7 +50,7 @@ const Nav = (props) => (
       {/* Show the link to the info page and the logout button if the user is logged in */}
       {props.user.id && (
         <>
-          <LogOutButton className="nav-link" goToHome = {props.goToHome}/>
+          <LogOutButton className="logout" goToHome = {props.goToHome}/>
         </>
       )}
       {/* Always show this link since the about page is not protected */}

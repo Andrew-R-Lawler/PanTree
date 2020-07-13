@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
-router.get('/:query', (req, res) => {
+router.get('/:query', rejectUnauthenticated, (req, res) => {
     console.log('req params query', req.params);
     axios.get(`https://api.edamam.com/search?app_key=${process.env.EDAMAM_API_KEY}&app_id=${process.env.EDAMAM_API_ID}&q=${req.params.query}`)
     .then((response) => {

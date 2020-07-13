@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const axios = require('axios');
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     pool.query(`SELECT * FROM "favorites"
     WHERE "user_id" = $1`, [req.user.id])
     .then((result) => {
@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     pool.query(`INSERT INTO "favorites" ("user_id", "recipe_uri")
     VALUES ($1, $2)`, [req.user.id, req.body.uri])
     .then((result) => {
@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
     })
 })
 
-router.delete('/', (req, res) => {
+router.delete('/', rejectUnauthenticated, (req, res) => {
     pool.query(`DELETE FROM "favorites"
     WHERE "recipe_uri" = $1`, [req.body.uri])
     .then(result => {

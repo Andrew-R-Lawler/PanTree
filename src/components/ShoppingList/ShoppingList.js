@@ -44,7 +44,7 @@ class ShoppingList extends Component {
                         <Table.Header>
                             <Table.Row>
                                 <Table.HeaderCell>Ingredients to Purchase</Table.HeaderCell>
-                                <Table.HeaderCell textAlign='right'>Actions</Table.HeaderCell>
+                                <Table.HeaderCell>Actions</Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>
